@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>title</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/popup.css">
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="content">Hello World</div>
+  <button id="testButton">TEST</button>
+  <button id="block">BLOCKER</button>
+
+</body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbESV5B5nIlPyzvqKs02R1HfcBC59RL8I&callback=" async
+  defer></script>
+<script type="text/javascript" src="./javascript/model.js"></script>
+<script type="text/javascript" src="./javascript/view.js"></script>
+<script type="text/javascript" src="./javascript/controller/crimeCountBuilder.js"></script>
+<script type="text/javascript" src="./javascript/controller/controller.js"></script>
+<script type="text/javascript" src="./javascript/controller/propertyValidation.js"></script>
+<script type="text/javascript" src="./javascript/controller/markerBuilder.js"></script>
+<script type="text/javascript" src="./javascript/controller/createPopupClass.js"></script>
+
+<script type="text/javascript" src="./javascript/linkedlist.js"></script>
+<script type="text/javascript" src="./javascript/test.js"></script>
+<script>
+  async function main() {
+    const api = `https://data.cityoftacoma.org/resource/Incident_Number.json?$order=occurred_on DESC&$limit=1000`
+    //const api = `https://data.cityoftacoma.org/resource/Incident_Number.json?$order=occurred_on DESC&$limit=50000`
+
+    const controller = new Controller()
+
+    const response = await fetch(api)
+    const data = await response.json()
+
+    controller.seedModel(data)
+
+    controller.test()
+  }
+
+
+</script>
+
+<script type="text/javascript">
+  function autorun()
+  {
+    main()
+  }
+  if (window.addEventListener) window.addEventListener("load", autorun, false);
+  else if (window.attachEvent) window.attachEvent("onload", autorun);
+  else window.onload = autorun;
+ </script>
+
+</html>
