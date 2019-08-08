@@ -16,7 +16,6 @@ body {
 .popup-bubble {
     /* Position the bubble centred-above its parent. */
     position: absolute;
-    top: 0;
     left: 0;
     transform: translate(-50%, -100%);
     /* Style the bubble. */
@@ -27,17 +26,21 @@ body {
     overflow-y: auto;
     max-height: 60px;
     box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5);
+    padding:10px;
+    padding-bottom:10px;
 }
 
 /* The parent of the bubble. A zero-height div at the top of the tip. */
 .popup-bubble-anchor {
     /* Position the div a fixed distance above the tip. */
     position: absolute;
+    top: -80px;
     width: 100%;
     bottom:
         /* TIP_HEIGHT= */
         8px;
     left: 0;
+    pointer-events: none;
 }
 
 /* This element draws the tip. */

@@ -1,0 +1,36 @@
+//Aggravated Assault: 1498
+//All Other Larceny: 7875
+//Arson: 188
+//Assisting or Promoting Prostitution: 7
+//Burglary/Breaking & Entering: 5500
+//Counterfeiting/Forgery: 633
+//Credit Card/Automatic Teller Fraud: 1234
+//Destruction/Damage/Vandalism of Property: 5030
+//Default: 1
+
+//Drug/narcotic Violations: 341 //Drug Equipment Violations: 26
+
+//Extortion/Blackmail: 82 Embezzlement: 16
+//False Pretenses/Swindle/Confidence Game: 931
+//Impersonation: 1174
+//Intimidation: 64
+//Justifiable Homicide: 1
+//Kidnaping/Abduction: 61
+//Motor Vehicle Theft: 4903
+//Murder and Nonnegligent Manslaughter: 22
+//Pocket-Picking: 29
+//Pornography/Obscene Material: 128
+//Prostitution: 31
+//Purse-Snatching: 60
+//Robbery: 1169
+//Shoplifting: 2512
+//Simple Assault: 2617
+//Stolen Property Offenses: 194
+//Theft From Building: 167
+//Theft From Coin Operated Machine or Device: 11
+//Theft From Motor Vehicle: 9213
+//Theft of Motor Vehicle Parts/Accessories: 1116
+//Violation of No Contact/Protection Order: 210
+//Weapon Law Violations: 190
+//Welfare Fraud: 7
+//Wire Fraud: 8

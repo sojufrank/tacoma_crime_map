@@ -10,11 +10,11 @@ class Model {
         return this.data
     }
 
-    set setCrimeCount(obj) {
-        this.crimeCount = obj
+    set setCrimeList(obj) {
+        this.crimeList = obj
     }
-    get getCrimeCount() {
-        return this.crimeCount
+    get getCrimeList() {
+        return this.crimeList
     }
 
     set setMap(arg){
@@ -23,5 +23,13 @@ class Model {
 
     get getMap(){
         return this.map
+    }
+
+    set setCrimeObject(arg){
+        this.crimeObject = arg
+    }
+
+    get getCrimeObject(){
+        return this.crimeObject
     }
 }

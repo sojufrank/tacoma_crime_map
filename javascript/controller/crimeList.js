@@ -1,8 +1,10 @@
-class CrimeCountBuilder {
+class CrimeList {
     constructor() {}
 
-    buildCrimeCount(arr) {
+    createCrimeList(arr) {
+
         let obj = {}
+
         arr.forEach(item => {
             if (!obj.hasOwnProperty(item.crime)) {
                 obj[item.crime] = 1
@@ -10,6 +12,7 @@ class CrimeCountBuilder {
                 obj[item.crime]++
             }
         })
+        
         return obj
     }
 }

@@ -1,58 +1,74 @@
 class Controller {
     constructor() {
+
         this.model = new Model()
         this.view = new View()
     }
 
-    init(arr){
-        
+    start(arr) {
+
+        this.model.setData = this.modelController().filter(arr)
+        this.model.setCrimeObject = this.modelController().gpsCoordGrid(this.model.getData)
+        this.model.setCrimeList = this.modelController().crimeList(this.model.getData)
+        this.model.setMap = this.googleController().createMap()
+        this.googleController().createMarker(this.model.getMap, this.model.getCrimeObject)
+        this.test()
     }
 
-    seedModel(arr) {
-        this.model.setData = this.sanitize(arr)
-        this.model.setCrimeCount = this.buildCrimeCount(this.model.getData)
-        this.buildMap()
-        this.buildMarker()
-    }
+    modelController(arr) {
 
-    sanitize(arr) {
-        const propertyValidationObject = new PropertyValidation()
-        const filteredObject = propertyValidationObject.filterProperties(arr)
-        return propertyValidationObject.filterGeoProperty(filteredObject)
-    }
+        this.cFilter = new CrimeFilter()
+        this.clist = new CrimeList()
+        this.grid = new GpsGrid()
 
-    buildCrimeCount(arr) {
-        const crimeCountBuilder = new CrimeCountBuilder()
-        return crimeCountBuilder.buildCrimeCount(arr)
-    }
+        return {
 
-    buildMap() {
-        const elem = document.getElementById('map')
-        const mapStartInfo = {
-            center: {
-                lat: 47.2161,
-                lng: -122.4687
+            filter: (arr) => {
+                return this.cFilter.filterBadProperties(arr)
             },
-            zoom: 13
+
+            gpsCoordGrid: (arr) => {
+                return this.grid.gpsGridStruct(arr)
+            },
+
+            crimeList: (arr) => {
+                return this.clist.createCrimeList(arr)
+            }
         }
-        this.model.setMap = new google.maps.Map(elem, mapStartInfo)
     }
 
-    buildMarker() {
-        let map = this.model.getMap
+    googleController() {
 
-
+        this.m = new MarkerBuilder()
         
-        const m = new MarkerBuilder()
-        m.buildMarker(map)
+        return {
+            createMap: () => {
+                const elem = document.getElementById('map')
+                let mapStartInfo = {
+                    center: {
+                        lat: 47.182954,
+                        lng: -122.46235
+                    },
+                    zoom: 18,
+                    styles: aubergine,
+                    mapTypeControl:false,
+                    fullscreenControl:false,
+                    streetViewControl:false,
+                }
+                
+                return new google.maps.Map(elem, mapStartInfo)
+            },
 
+            createMarker: (map, arr) => {
+                this.m.buildMarkers(map, arr)
+            }
+        }
     }
 
     test() {
         const d = this.model.getData
-        const h = this.model.getCrimeCount
-
-        //console.log(d)
-        //console.table(h)
+        const h = this.model.getCrimeList
+        console.log('api data objects 4 the curious')
+        console.log(d, h)
     }
 }

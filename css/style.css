@@ -11,3 +11,14 @@ body {
     margin: 0;
     padding: 0;
 }
+
+
+#contentContainer {
+    position:absolute;
+    padding-bottom:10px
+}
+
+#content {
+    margin-bottom:10px
+}
+
