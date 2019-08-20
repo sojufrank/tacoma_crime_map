@@ -19,7 +19,7 @@ class MarkerBuilder {
         const markerClusterOptions = {
             imagePath: 'img/markerClusterer/m',
             zoomOnClick: false,
-            maxZoom: 16
+            maxZoom: 12
         }
 
         latitudes.forEach(i1 => {
@@ -43,6 +43,7 @@ class MarkerBuilder {
                         marker.addListener('click', (e) => {
                             //content must be populated before popup is created
                             const Popup = createPopupClass()
+                            console.log(crimes)
 
                             if (this.current == marker) {
                                 console.log('same')
@@ -77,16 +78,18 @@ class MarkerBuilder {
             })
         })
 
-        new MarkerClusterer(m, markerArray, markerClusterOptions)
+        //new MarkerClusterer(m, markerArray, markerClusterOptions)
     }
 
     createContent(crime, crimeArr) {
         let elem = document.getElementById('content')
         let c = crime.occurred_on
+        let s = ''
+        if(crimeArr.length > 1){s = 's'}
         elem.innerHTML = `${crime.crime} <br> 
                             ${crime.intersection.human_address} <br>
                             ${new Intl.DateTimeFormat('en-US', {'en-US':'long'}).format(new Date(c))} <br>
-                            ${crimeArr.length}x additional crimes of this type found at this location.
+                            ${crimeArr.length} crime${s} has been found at this location
                             `
         crimeArr.forEach(item => {
             console.log(item)

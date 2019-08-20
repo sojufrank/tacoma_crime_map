@@ -46,10 +46,10 @@ class Controller {
                 const elem = document.getElementById('map')
                 let mapStartInfo = {
                     center: {
-                        lat: 47.182954,
-                        lng: -122.46235
+                        lat: 47.1830,
+                        lng: -122.4629
                     },
-                    zoom: 18,
+                    zoom: 20,
                     styles: aubergine,
                     mapTypeControl:false,
                     fullscreenControl:false,

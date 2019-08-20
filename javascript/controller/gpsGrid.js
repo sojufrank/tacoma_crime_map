@@ -40,28 +40,31 @@ class GpsGrid{
             let longitudes = Object.keys(o[i1])
             longitudes.forEach(i2 => {
                 let crimes = Object.keys(o[i1][i2])
-                let sq = Math.sqrt(crimes.length)
-                let rnd = Math.round(sq)
-                let difference = 1
-                for (let i = 0; i < crimes.length; i++) {
+                let sq = Math.sqrt(crimes.length) 
+                let rnd = Math.round(sq) +1
+                for (let i = 0; i < crimes.length ; i++) {
                     const crimeArrayShortcut = o[i1][i2][crimes[i]]
                     crimeArrayShortcut.forEach(i3 => {
+                        let lat,log
                         for (let j = 0; j < rnd; j++) {
                             for (let k = 0; k < rnd; k++) {
                                 if ((i % rnd) == j) {
-                                    let lat = (parseFloat(i3.intersection.latitude) * 10000) + (j * difference)
+                                    lat = (parseFloat(i3.intersection.latitude) * 10000) + (j)
                                     lat = lat / 10000
                                     lat = lat.toFixed(4)
-                                    i3.intersection.latitude = lat
+                                    //i3.intersection.latitude = lat
                                 }
                                 if (Math.floor(i / rnd) == k) {
-                                    let log = (parseFloat(i3.intersection.longitude) * 10000) + (k * difference)
+                                    log = (parseFloat(i3.intersection.longitude) * 10000) + (k)
                                     log = log / 10000
                                     log = log.toFixed(4)
-                                    i3.intersection.longitude = log
+                                    //i3.intersection.longitude = log
                                 }
                             }
                         }
+                        i3.intersection.latitude = lat
+                        i3.intersection.longitude = log
+                        i3.round = rnd
                     })
                 }
             })

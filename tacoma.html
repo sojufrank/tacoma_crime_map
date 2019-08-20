@@ -1,53 +1,73 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/popup.css" />
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>title</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" type="text/css" href="css/popup.css">
-</head>
+	<body>
+		<div id="map"></div>
+		<div id="contentContainer"></div>
+	</body>
 
-<body>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbESV5B5nIlPyzvqKs02R1HfcBC59RL8I&callback="
+		async
+		defer
+	></script>
+	<script
+		type="text/javascript"
+		src="./javascript/lib/markerclusterer.js"
+	></script>
+	<script type="text/javascript" src="./javascript/lib/aubergine.js"></script>
+	<script type="text/javascript" src="./javascript/model.js"></script>
+	<script type="text/javascript" src="./javascript/view.js"></script>
+	<script
+		type="text/javascript"
+		src="./javascript/controller/crimeList.js"
+	></script>
+	<script
+		type="text/javascript"
+		src="./javascript/controller/gpsGrid.js"
+	></script>
+	<script
+		type="text/javascript"
+		src="./javascript/controller/controller.js"
+	></script>
+	<script
+		type="text/javascript"
+		src="./javascript/controller/crimeFilter.js"
+	></script>
+	<script
+		type="text/javascript"
+		src="./javascript/controller/markerBuilder.js"
+	></script>
+	<script
+		type="text/javascript"
+		src="./javascript/controller/createPopupClass.js"
+	></script>
+	<script
+		type="text/javascript"
+		src="./javascript/controller/iconSetter.js"
+	></script>
 
-  <div id="map"></div>
-  <div id="contentContainer"></div>
+	<script>
+		console.clear();
+		async function main() {
+			//const api = `https://data.cityoftacoma.org/resource/Incident_Number.json?$order=occurred_on DESC&$limit=1000`
+			//const api = `https://data.cityoftacoma.org/resource/Incident_Number.json?$order=occurred_on DESC&$limit=10000`
+			const api = `https://data.cityoftacoma.org/resource/Incident_Number.json?$order=occurred_on DESC&$limit=50000`;
+			const controller = new Controller();
 
-</body>
+			const response = await fetch(api);
+			const data = await response.json();
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbESV5B5nIlPyzvqKs02R1HfcBC59RL8I&callback=" async defer>
-</script>
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-</script>
-<script type="text/javascript" src="./javascript/lib/markerclusterer.js"></script>
-<script type="text/javascript" src="./javascript/lib/aubergine.js"></script>
+			controller.start(data);
+		}
 
-<script type="text/javascript" src="./javascript/model.js"></script>
-<script type="text/javascript" src="./javascript/view.js"></script>
-<script type="text/javascript" src="./javascript/controller/crimeList.js"></script>
-<script type="text/javascript" src="./javascript/controller/gpsGrid.js"></script>
-<script type="text/javascript" src="./javascript/controller/controller.js"></script>
-<script type="text/javascript" src="./javascript/controller/crimeFilter.js"></script>
-<script type="text/javascript" src="./javascript/controller/markerBuilder.js"></script>
-<script type="text/javascript" src="./javascript/controller/createPopupClass.js"></script>
-<script type="text/javascript" src="./javascript/controller/iconSetter.js"></script>
-
-<script>
-  console.clear()
-  async function main() {
-    //const api = `https://data.cityoftacoma.org/resource/Incident_Number.json?$order=occurred_on DESC&$limit=1000`
-    //const api = `https://data.cityoftacoma.org/resource/Incident_Number.json?$order=occurred_on DESC&$limit=10000`
-    const api = `https://data.cityoftacoma.org/resource/Incident_Number.json?$order=occurred_on DESC&$limit=50000`
-    const controller = new Controller()
-
-    const response = await fetch(api)
-    const data = await response.json()
-
-    controller.start(data)
-  }
-
-  main()
-</script>
-
+		main();
+	</script>
 </html>
